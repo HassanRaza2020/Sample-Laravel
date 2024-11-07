@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\ViewException;
 
 class UseController extends Controller
 {
@@ -25,6 +26,14 @@ class UseController extends Controller
 
     function adminLogin(){
         return view('admin.login');
+    }
+
+    function About($name){
+        return view('about',['name' => $name]);
+    }
+
+    function userHome(){
+        return view('home'); 
     }
 
 

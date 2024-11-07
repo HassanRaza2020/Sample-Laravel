@@ -33,3 +33,6 @@ Route::get('user',  [UseController::class,'getUser']);
 Route::get('about', [UseController::class,'aboutUser']);
 Route::get('user/{name}',[UseController::class,'getUserName']); 
 Route::get('admin', [UseController::class, 'adminLogin']);
+//Route::get('hassan',[UseController::class,'About']);
+Route::get('/hassan/{name}', [App\Http\Controllers\UseController::class, 'About']);
+Route::get('user-home', [UseController::class,'userHome']);
