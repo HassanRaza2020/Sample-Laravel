@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\UseController;
+use  App\Http\Controllers\MailController;
 
 
 /*
@@ -36,3 +37,6 @@ Route::get('admin', [UseController::class, 'adminLogin']);
 //Route::get('hassan',[UseController::class,'About']);
 Route::get('/hassan/{name}', [App\Http\Controllers\UseController::class, 'About']);
 Route::get('user-home', [UseController::class,'userHome']);
+Route::view("/", "welcome");
+
+Route::get('/send-mail', [MailController::class,'sendEmail']);
