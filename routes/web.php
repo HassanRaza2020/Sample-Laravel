@@ -37,6 +37,8 @@ Route::get('admin', [UseController::class, 'adminLogin']);
 //Route::get('hassan',[UseController::class,'About']);
 Route::get('/hassan/{name}', [App\Http\Controllers\UseController::class, 'About']);
 Route::get('user-home', [UseController::class,'userHome']);
-Route::view("/", "welcome");
 
-Route::get('/send-mail', [MailController::class,'sendEmail']);
+
+
+Route::post('/send-email', [MailController::class, 'sendEmail'])->name('sendEmail');
+Route::view('/send-email', 'emails.send-email');

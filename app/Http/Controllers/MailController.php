@@ -12,13 +12,15 @@ class MailController extends Controller
     //
 
 
-    function sendEmail(){
-        $to ="shiekhhassan1234draq@gmail.com";
-        $msg = "dumy mail";
-        $subject = "My name is Hassan";
+    function sendEmail(Request $request){
+       
 
+        $subject = $request->input('subject');
+        $msg = $request->input('body');
+        $to = "shiekhhassan1234draq@gmail.com";
+     
         Mail::to($to)->send(new email_registeration($msg,$subject));
-
+    
 
     }
 
