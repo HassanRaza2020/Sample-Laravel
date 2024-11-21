@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\UseController;
-use  App\Http\Controllers\MailController;
-
+use  App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +37,10 @@ Route::get('admin', [UseController::class, 'adminLogin']);
 Route::get('/hassan/{name}', [App\Http\Controllers\UseController::class, 'About']);
 Route::get('user-home', [UseController::class,'userHome']);
 
+Route::get('/email', [EmailController::class, 'showForm'])
+->name('emails.email');
+Route::post('/email', [EmailController::class, 'sendEmail'])
+->name('emails.email');
 
 
-Route::post('/send-email', [MailController::class, 'sendEmail'])->name('sendEmail');
-Route::view('/send-email', 'emails.send-email');
+
