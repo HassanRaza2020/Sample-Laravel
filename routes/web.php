@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\UseController;
 use  App\Http\Controllers\EmailController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MyEmail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +40,30 @@ Route::get('admin', [UseController::class, 'adminLogin']);
 Route::get('/hassan/{name}', [App\Http\Controllers\UseController::class, 'About']);
 Route::get('user-home', [UseController::class,'userHome']);
 
-Route::get('/email', [EmailController::class, 'showForm'])
-->name('emails.email');
-Route::post('/email', [EmailController::class, 'sendEmail'])
+Route::get('/', [EmailController::class, 'showForm'])
 ->name('emails.email');
 
+Route::post('/', [EmailController::class, 'sendEmail'])
+->name('emails.email');
 
 
+
+Route::get('/testroute', function () {
+  //$name = "Hassan Raza";
+
+  try {
+      Mail::to("shiekhhassan1234draq@gmail.com")
+      ->send(new MyEmail("Hassan Raza"));
+      
+      return response()->json([
+          'status' => 'success',
+          'message' => 'Email sent successfully to Hassan.',
+      ]);
+  } catch (\Exception $e) {
+      return response()->json([
+          'status' => 'error',
+          'message' => 'Failed to send email.',
+          'error' => $e->getMessage(),
+      ], 500);
+  }
+});
