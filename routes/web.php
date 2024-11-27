@@ -1,8 +1,9 @@
-<?php
+ <?php
 
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\UseController;
 use  App\Http\Controllers\EmailController;
+use  App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MyEmail;
 
@@ -32,9 +33,9 @@ Route::get('/about/{name}',function($name){
     return view('About', ['name'=>$name]);});
 */
 
-Route::get('user',  [UseController::class,'getUser']);  
+//Route::get('user',  [UseController::class,'getUser']);  
 Route::get('about', [UseController::class,'aboutUser']);
-Route::get('user/{name}',[UseController::class,'getUserName']); 
+//Route::get('user/{name}',[UseController::class,'getUserName']); 
 Route::get('admin', [UseController::class, 'adminLogin']);
 //Route::get('hassan',[UseController::class,'About']);
 Route::get('/hassan/{name}', [App\Http\Controllers\UseController::class, 'About']);
@@ -42,7 +43,6 @@ Route::get('user-home', [UseController::class,'userHome']);
 
 Route::get('/', [EmailController::class, 'showForm'])
 ->name('emails.email');
-
 Route::post('/', [EmailController::class, 'sendEmail'])
 ->name('emails.email');
 
@@ -67,3 +67,7 @@ Route::get('/testroute', function () {
       ], 500);
   }
 });
+
+
+
+Route::resource('user', UserController::class);
