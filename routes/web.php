@@ -20,6 +20,12 @@ use App\Mail\MyEmail;
 */
 
 Route::get('/h', function () {
+
+    //app()->make('hello');
+    $service = app('test');
+    dd($service);
+
+    //dd($app);
     return view('home');
 });
 
